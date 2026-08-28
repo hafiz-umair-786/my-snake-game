@@ -2,6 +2,7 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 import json
 import mimetypes
+import socket
 
 ROOT = Path(__file__).parent
 scores = []
@@ -60,8 +61,15 @@ class GameServer(BaseHTTPRequestHandler):
 
 if __name__ == "__main__":
     server = ThreadingHTTPServer(("0.0.0.0", 8000), GameServer)
+    mobile_ip = "127.0.0.1"
+    try:
+        with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as probe:
+            probe.connect(("8.8.8.8", 80))
+            mobile_ip = probe.getsockname()[0]
+    except OSError:
+        pass
     print("Snake web app: http://localhost:8000")
-    print("For phone testing on the same Wi-Fi, use your computer's local IP with port 8000.")
+    print(f"For phone testing on the same Wi-Fi, open: http://{mobile_ip}:8000")
     try:
         server.serve_forever()
     except KeyboardInterrupt:
