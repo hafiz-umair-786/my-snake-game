@@ -17,6 +17,7 @@ let snake,
   poisonCount,
   running = false,
   timer,
+  obstacleTimer,
   speedLevel = 3,
   wrapAround = true;
 let best = Number(localStorage.getItem("neon-coil-best") || 0);
@@ -67,6 +68,12 @@ function updateHud() {
   scoreEl.textContent = score;
   foodEl.textContent = foodCount;
   poisonEl.textContent = poisonCount;
+}
+function moveObstacles() {
+  const obstacleCount = obstacles.length;
+  obstacles = [];
+  while (obstacles.length < obstacleCount) obstacles.push(freeCell());
+  draw();
 }
 function drawCell(cell, color, glow = color) {
   ctx.shadowBlur = 16;
@@ -182,12 +189,15 @@ function start() {
   running = true;
   message.style.display = "none";
   clearInterval(timer);
+  clearInterval(obstacleTimer);
   timer = setInterval(step, Math.max(55, 145 - speedLevel * 20));
+  obstacleTimer = setInterval(moveObstacles, 10000);
   draw();
 }
 function endRun() {
   running = false;
   clearInterval(timer);
+  clearInterval(obstacleTimer);
   message.querySelector(".message-kicker").textContent = "RUN COMPLETE";
   message.querySelector("strong").innerHTML = `FINAL SCORE<br><b>${score}</b>`;
   message.querySelector(".primary-button").innerHTML =
