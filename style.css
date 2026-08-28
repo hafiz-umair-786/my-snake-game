@@ -207,7 +207,7 @@ body {
   margin: 0;
   background: var(--ink);
   color: var(--cream);
-  font-family: "Space Grotesk", sans-serif;
+  font-family:  sans-serif;
   min-height: 100vh;
   background-image:
     linear-gradient(rgba(88, 213, 213, 0.035) 1px, transparent 1px),
@@ -236,15 +236,7 @@ footer,
   color: var(--lime);
   font-size: 29px;
 }
-.brand strong,
-.brand small,
-.label,
-.eyebrow,
-.live-dot,
-.pulse,
-footer {
-  font-family: "DM Mono", monospace;
-}
+
 .brand strong {
   display: block;
   letter-spacing: 0.08em;
