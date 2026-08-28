@@ -72,7 +72,9 @@ function drawCell(cell, color, glow = color) {
   ctx.shadowBlur = 16;
   ctx.shadowColor = glow;
   ctx.fillStyle = color;
-  ctx.fillRect(cell.x * grid + 3, cell.y * grid + 3, grid - 6, grid - 6);
+  ctx.beginPath();
+  ctx.roundRect(cell.x * grid + 3, cell.y * grid + 3, grid - 6, grid - 6, 5);
+  ctx.fill();
   ctx.shadowBlur = 0;
 }
 function drawHead(cell) {
@@ -89,6 +91,21 @@ function drawHead(cell) {
   );
   ctx.fill();
   ctx.shadowBlur = 0;
+  const centerX = cell.x * grid + grid / 2;
+  const centerY = cell.y * grid + grid / 2;
+  const perpendicular = { x: -direction.y, y: direction.x };
+  ctx.fillStyle = "#08111f";
+  [1, -1].forEach((side) => {
+    ctx.beginPath();
+    ctx.arc(
+      centerX + direction.x * 5 + perpendicular.x * side * 4,
+      centerY + direction.y * 5 + perpendicular.y * side * 4,
+      2,
+      0,
+      Math.PI * 2,
+    );
+    ctx.fill();
+  });
 }
 function updateSettings() {
   document.querySelector("#speedValue").textContent = speedLevel;
