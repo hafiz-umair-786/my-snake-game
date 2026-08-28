@@ -76,8 +76,14 @@ function updateHud() {
 }
 function moveObstacles() {
   const obstacleCount = obstacles.length;
+  const previousObstacles = obstacles;
   obstacles = [];
-  while (obstacles.length < obstacleCount) obstacles.push(freeCell());
+  while (obstacles.length < obstacleCount) {
+    const nextObstacle = freeCell();
+    if (!previousObstacles.some((obstacle) => same(obstacle, nextObstacle))) {
+      obstacles.push(nextObstacle);
+    }
+  }
   draw();
 }
 function drawCell(cell, color, glow = color) {
@@ -193,8 +199,11 @@ function loseLife() {
   lives--;
   updateHud();
   if (!lives) return endRun();
-  snake = [];
-  const spawn = freeCell();
+  const currentLine = snake[0].y;
+  let spawn;
+  do {
+    spawn = freeCell();
+  } while (spawn.y === currentLine);
   snake = [spawn];
   direction = { x: 1, y: 0 };
   queued = direction;
