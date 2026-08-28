@@ -75,6 +75,21 @@ function drawCell(cell, color, glow = color) {
   ctx.fillRect(cell.x * grid + 3, cell.y * grid + 3, grid - 6, grid - 6);
   ctx.shadowBlur = 0;
 }
+function drawHead(cell) {
+  ctx.shadowBlur = 16;
+  ctx.shadowColor = "#58d5d5";
+  ctx.fillStyle = "#f2f0e8";
+  ctx.beginPath();
+  ctx.arc(
+    cell.x * grid + grid / 2,
+    cell.y * grid + grid / 2,
+    grid / 2,
+    0,
+    Math.PI * 2,
+  );
+  ctx.fill();
+  ctx.shadowBlur = 0;
+}
 function updateSettings() {
   document.querySelector("#speedValue").textContent = speedLevel;
   document.querySelector("#wrapValue").textContent = wrapAround ? "ON" : "OFF";
@@ -111,9 +126,8 @@ function draw() {
     ctx.fill();
     ctx.shadowBlur = 0;
   });
-  snake.forEach((part, index) =>
-    drawCell(part, index ? "#58d5d5" : "#f2f0e8", "#58d5d5"),
-  );
+  snake.slice(1).forEach((part) => drawCell(part, "#58d5d5", "#58d5d5"));
+  drawHead(snake[0]);
 }
 function step() {
   direction = queued;
@@ -196,6 +210,13 @@ function setDirection(key) {
 }
 async function loadScores() {
   const data = runHistory;
+  document.querySelector("#historyTotal").textContent = data.length;
+  document.querySelector("#historyBest").textContent = data.length
+    ? Math.max(...data.map((item) => item.score))
+    : "0";
+  document.querySelector("#historyLatest").textContent = data.length
+    ? `${data[0].score > 0 ? "+" : ""}${data[0].score}`
+    : "--";
   document.querySelector("#historyList").innerHTML = data.length
     ? data
         .map(
