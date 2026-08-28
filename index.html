@@ -52,7 +52,8 @@
             </div>
             <div class="run-stats">
               <span>FOOD <b id="foodCount">0</b></span
-              ><span>POISON <b id="poisonCount">0</b></span>
+              ><span>POISON <b id="poisonCount">0</b></span
+              ><span>LIVES <b id="livesCount">3</b></span>
             </div>
           </div>
           <div class="board-wrap">
@@ -121,7 +122,8 @@
         Guide the coil through the grid and collect energy cells. Green cells
         add <b>1 point</b>; red poison cells remove <b>3 points</b>, even below
         zero. Yellow obstacles move to new positions every 10 seconds. Touch the
-        directional pad on mobile.
+        directional pad on mobile. You have 3 lives; collisions use one life and
+        respawn you at a safe position.
       </p>
       <button class="primary-button" id="dialogStart">
         GOT IT <span>↗</span>
@@ -154,5 +156,8 @@
       </div>
     </dialog>
     <script src="/script.js"></script>
+    <audio id="backgroundMusic" loop>
+      <source src="/music.mp3" type="audio/mpeg" />
+    </audio>
   </body>
 </html>

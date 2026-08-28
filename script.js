@@ -4,6 +4,8 @@ const scoreEl = document.querySelector("#score");
 const bestEl = document.querySelector("#bestScore");
 const foodEl = document.querySelector("#foodCount");
 const poisonEl = document.querySelector("#poisonCount");
+const livesEl = document.querySelector("#livesCount");
+const backgroundMusic = document.querySelector("#backgroundMusic");
 const message = document.querySelector("#boardMessage");
 const grid = 25;
 let snake,
@@ -15,6 +17,7 @@ let snake,
   score,
   foodCount,
   poisonCount,
+  lives,
   running = false,
   timer,
   obstacleTimer,
@@ -59,6 +62,7 @@ function reset() {
   direction = { x: 1, y: 0 };
   queued = direction;
   score = foodCount = poisonCount = 0;
+  lives = 3;
   food = freeCell();
   poison = freeCell();
   updateHud();
@@ -68,6 +72,7 @@ function updateHud() {
   scoreEl.textContent = score;
   foodEl.textContent = foodCount;
   poisonEl.textContent = poisonCount;
+  livesEl.textContent = lives;
 }
 function moveObstacles() {
   const obstacleCount = obstacles.length;
@@ -169,7 +174,7 @@ function step() {
     snake.some((part) => same(part, head)) ||
     obstacles.some((obstacle) => same(obstacle, head))
   )
-    return endRun();
+    return loseLife();
   snake.unshift(head);
   if (same(head, food)) {
     score += 1;
@@ -182,6 +187,17 @@ function step() {
     if (snake.length > 1) snake.pop();
   } else snake.pop();
   updateHud();
+  draw();
+}
+function loseLife() {
+  lives--;
+  updateHud();
+  if (!lives) return endRun();
+  snake = [];
+  const spawn = freeCell();
+  snake = [spawn];
+  direction = { x: 1, y: 0 };
+  queued = direction;
   draw();
 }
 function start() {
@@ -310,8 +326,23 @@ document
     document.querySelector("#guideDialog").close(),
   );
 document.querySelector("#soundButton").addEventListener("click", (event) => {
-  event.currentTarget.textContent =
-    event.currentTarget.textContent === "♫" ? "×" : "♫";
+  const button = event.currentTarget;
+  if (backgroundMusic.paused) {
+    backgroundMusic
+      .play()
+      .then(() => {
+        button.textContent = "×";
+        button.setAttribute("aria-label", "Turn music off");
+      })
+      .catch(() => {
+        button.textContent = "♫";
+        button.setAttribute("aria-label", "Music file unavailable");
+      });
+  } else {
+    backgroundMusic.pause();
+    button.textContent = "♫";
+    button.setAttribute("aria-label", "Turn music on");
+  }
 });
 document
   .querySelector("#historyButton")
