@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#08111f" />
+    <title>Neon Coil | Snake</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <div class="brand">
+          <span class="brand-mark">✦</span>
+          <div><strong>NEON COIL</strong><small>ARCADE // ONLINE</small></div>
+        </div>
+        <div class="top-actions">
+          <span class="live-dot">LIVE</span
+          ><button
+            class="icon-button"
+            id="soundButton"
+            aria-label="Toggle sound"
+          >
+            ♫
+          </button>
+        </div>
+      </header>
+
+      <section class="hero">
+        <div>
+          <p class="eyebrow">CIRCUIT RUN 001</p>
+          <h1>Stay sharp.<br /><em>Keep growing.</em></h1>
+          <p class="subcopy">
+            Eat bright. Dodge danger. Climb the shared board.
+          </p>
+        </div>
+        <div class="hero-stat">
+          <span>BEST RUN</span><strong id="bestScore">0</strong
+          ><small>POINTS</small>
+        </div>
+      </section>
+
+      <section class="game-layout">
+        <div class="game-panel">
+          <div class="panel-head">
+            <div>
+              <span class="label">CURRENT RUN</span
+              ><strong id="score">0</strong>
+            </div>
+            <div class="run-stats">
+              <span>FOOD <b id="foodCount">0</b></span
+              ><span>POISON <b id="poisonCount">0</b></span>
+            </div>
+          </div>
+          <div class="board-wrap">
+            <canvas id="board" width="800" height="500"></canvas>
+            <div class="board-message" id="boardMessage">
+              <span class="message-kicker">READY WHEN YOU ARE</span
+              ><strong>Press START<br />to enter the grid</strong
+              ><button class="primary-button" id="startButton">
+                START RUN <span>↗</span>
+              </button>
+            </div>
+          </div>
+          <div class="controls">
+            <button class="control-button" data-key="ArrowUp">↑</button>
+            <div>
+              <button class="control-button" data-key="ArrowLeft">←</button
+              ><button class="control-button" data-key="ArrowDown">↓</button
+              ><button class="control-button" data-key="ArrowRight">→</button>
+            </div>
+          </div>
+        </div>
+        <aside class="side-panel">
+          <div class="side-heading">
+            <div>
+              <span class="label">YOUR RUN HISTORY</span>
+              <h2>My runs</h2>
+            </div>
+            <span class="pulse">● LOCAL</span>
+          </div>
+          <button class="history-button" id="historyButton">
+            SHOW HISTORY <span>↗</span>
+          </button>
+          <div class="rules">
+            <span class="label">RULES OF THE GRID</span>
+            <p><b class="green">●</b> Energy cell <strong>+1</strong></p>
+            <p><b class="red">●</b> Poison cell <strong>-3</strong></p>
+            <p><b class="yellow">◆</b> Collision <strong>GAME OVER</strong></p>
+          </div>
+          <div class="settings-box">
+            <span class="label">RUN SETTINGS</span>
+            <div class="setting-row">
+              <span>Speed <b id="speedValue">3</b></span>
+              <div>
+                <button class="setting-button" id="speedDown">−</button
+                ><button class="setting-button" id="speedUp">+</button>
+              </div>
+            </div>
+            <div class="setting-row">
+              <span>Wrap edges <b id="wrapValue">ON</b></span
+              ><button class="setting-button toggle" id="wrapButton">ON</button>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <footer>
+        <span>NEON COIL / 2026</span><span>Arrow keys or touch to move</span
+        ><button id="guideButton">HOW TO PLAY ↗</button>
+      </footer>
+    </main>
+    <dialog id="guideDialog">
+      <button class="close" id="closeGuide">×</button>
+      <p class="eyebrow">FIELD MANUAL</p>
+      <h2>How to play</h2>
+      <p>
+        Guide the coil through the grid and collect energy cells. Green cells
+        add <b>1 point</b>; red poison cells remove <b>3 points</b>, even below
+        zero. Touch the directional pad on mobile.
+      </p>
+      <button class="primary-button" id="dialogStart">
+        GOT IT <span>↗</span>
+      </button>
+    </dialog>
+    <dialog id="historyDialog" class="history-dialog">
+      <button class="close" id="closeHistory">×</button>
+      <p class="eyebrow">PERSONAL RECORD</p>
+      <h2>Detailed History</h2>
+      <div class="history-actions">
+        <button class="history-action" id="downloadHistory">
+          DOWNLOAD TXT
+        </button>
+        <button class="history-action danger" id="clearHistory">
+          CLEAR HISTORY
+        </button>
+      </div>
+      <div class="history-head">
+        <span>RUN</span><span>DATE / TIME</span><span>RESULT</span>
+      </div>
+      <div id="historyList" class="history-list">
+        <div class="empty">No runs yet. Make your first mark.</div>
+      </div>
+    </dialog>
+    <script src="/script.js"></script>
+  </body>
+</html>
