@@ -251,6 +251,20 @@ footer,
   gap: 18px;
   align-items: center;
 }
+.theme-button {
+  border: 0;
+  padding: 8px 0;
+  background: none;
+  color: var(--ink);
+  font:
+    10px "DM Mono",
+    monospace;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+}
+.theme-button:hover {
+  color: var(--coral);
+}
 .live-dot,
 .pulse {
   font-size: 11px;
@@ -647,5 +661,375 @@ dialog p:not(.eyebrow) {
   }
   .board-message strong {
     font-size: 22px;
+  }
+}
+
+[data-theme="midnight"] {
+  --ink: #e8e0cf;
+  --panel: #1d2930;
+  --line: #52615d;
+  --cream: #e8e0cf;
+  --muted: #aab1a8;
+  --lime: #b6c86a;
+  --coral: #e07a5f;
+  --cyan: #83b692;
+  --yellow: #e2b35f;
+}
+[data-theme="midnight"] body {
+  background-color: #172126;
+  background-image:
+    radial-gradient(rgba(232, 224, 207, 0.08) 0.7px, transparent 0.7px),
+    linear-gradient(135deg, rgba(29, 41, 48, 0.8), transparent 60%);
+}
+[data-theme="midnight"] .game-panel,
+[data-theme="midnight"] .side-panel,
+[data-theme="midnight"] .board-message {
+  background-color: rgba(29, 41, 48, 0.9);
+}
+[data-theme="sunset"] {
+  --ink: #4b2925;
+  --panel: #fff4df;
+  --line: #d5ab83;
+  --cream: #fff4df;
+  --muted: #846356;
+  --lime: #6d8b45;
+  --coral: #b94e3c;
+  --cyan: #8a5a44;
+  --yellow: #d68b3e;
+}
+[data-theme="sunset"] body {
+  background-color: #e9c7a4;
+  background-image:
+    radial-gradient(rgba(75, 41, 37, 0.08) 0.7px, transparent 0.7px),
+    linear-gradient(135deg, rgba(255, 244, 223, 0.45), transparent 55%);
+}
+
+@media (min-width: 761px) {
+  .game-layout {
+    grid-template-columns: minmax(135px, 1fr) minmax(0, 2fr) minmax(235px, 1fr);
+    align-items: start;
+  }
+  .section-menu {
+    display: grid;
+    align-content: start;
+    gap: 8px;
+    padding: 12px 8px 0 0;
+  }
+  .section-menu .label {
+    margin: 0 0 8px 4px;
+  }
+  .section-button {
+    border: 0;
+    border-left: 3px solid transparent;
+    background: transparent;
+    color: var(--muted);
+    padding: 14px 10px;
+    text-align: left;
+    font:
+      11px "DM Mono",
+      monospace;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+  }
+  .section-button:hover,
+  .section-button.active {
+    border-left-color: var(--coral);
+    background: rgba(255, 248, 233, 0.55);
+    color: var(--ink);
+  }
+  .page-view {
+    display: none;
+  }
+  .page-view.active {
+    display: block;
+  }
+  .page-view h2 {
+    margin: 6px 0 8px;
+    font:
+      700 38px Georgia,
+      serif;
+  }
+  .view-intro {
+    color: var(--muted);
+    font:
+      italic 17px Georgia,
+      serif;
+  }
+  .guide-list {
+    display: grid;
+    gap: 0;
+    margin: 30px 0 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--line);
+  }
+  .guide-list li {
+    display: grid;
+    grid-template-columns: 125px 1fr;
+    gap: 16px;
+    padding: 17px 0;
+    border-bottom: 1px solid var(--line);
+    color: var(--muted);
+    font:
+      14px Georgia,
+      serif;
+  }
+  .guide-list strong {
+    color: var(--ink);
+    font:
+      11px "DM Mono",
+      monospace;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .view-heading {
+    align-items: start;
+  }
+  .view-heading > strong {
+    color: var(--coral);
+    font:
+      700 44px Georgia,
+      serif;
+  }
+  .view-summary {
+    display: flex;
+    gap: 22px;
+    margin: 22px 0;
+    padding: 13px 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    color: var(--muted);
+    font:
+      10px "DM Mono",
+      monospace;
+  }
+  .view-summary b {
+    color: var(--ink);
+    margin-left: 5px;
+  }
+  .settings-view-list {
+    margin-top: 28px;
+    border-top: 1px solid var(--line);
+  }
+  .view-setting {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+    border-bottom: 1px solid var(--line);
+    color: var(--muted);
+    font:
+      14px "DM Mono",
+      monospace;
+  }
+  .view-setting b {
+    color: var(--cyan);
+    font-weight: 400;
+    margin-left: 6px;
+  }
+  .view-setting .setting-button {
+    min-width: 72px;
+    padding: 0 8px;
+    font-size: 10px;
+    letter-spacing: 0.04em;
+  }
+}
+@media (max-width: 760px) {
+  .section-menu,
+  .page-view:not(#homeView) {
+    display: none;
+  }
+}
+
+/* A warmer, hand-painted arcade palette. */
+:root {
+  --ink: #263b2b;
+  --panel: #fff8e9;
+  --line: #cdbd9f;
+  --cream: #fff8e9;
+  --muted: #766e5f;
+  --lime: #6d9b4a;
+  --coral: #c95f45;
+  --cyan: #2f6d3e;
+  --yellow: #d19b45;
+}
+body {
+  background-color: #e7d7b8;
+  color: var(--ink);
+  font-family: "Trebuchet MS", sans-serif;
+  background-image:
+    radial-gradient(rgba(38, 59, 43, 0.08) 0.7px, transparent 0.7px),
+    linear-gradient(135deg, rgba(255, 248, 233, 0.45), transparent 55%);
+  background-size:
+    9px 9px,
+    100% 100%;
+}
+.shell {
+  max-width: 1180px;
+}
+.brand strong,
+.hero h1,
+.side-heading h2,
+dialog h2 {
+  font-family: Georgia, serif;
+  letter-spacing: 0;
+}
+.brand-mark {
+  color: var(--coral);
+  transform: rotate(-8deg);
+}
+.brand strong {
+  font-size: 18px;
+}
+.brand small,
+.eyebrow,
+.label,
+.hero-stat span,
+.hero-stat small,
+.run-stats,
+.setting-row,
+footer,
+footer button,
+.message-kicker,
+.history-button,
+.history-action,
+.history-head,
+.score-name small,
+.score-value small {
+  font-family: "DM Mono", monospace;
+  letter-spacing: 0.06em;
+}
+.hero {
+  padding: 68px 0 48px;
+  border-bottom: 2px solid var(--ink);
+}
+.eyebrow,
+.message-kicker {
+  color: var(--coral);
+}
+.hero h1 {
+  font-size: clamp(42px, 7vw, 78px);
+  line-height: 0.98;
+  font-weight: 700;
+}
+.hero h1 em {
+  color: var(--cyan);
+  font-style: italic;
+}
+.subcopy {
+  color: var(--muted);
+  font-family: Georgia, serif;
+  font-style: italic;
+}
+.hero-stat strong,
+.panel-head strong {
+  color: var(--coral);
+  font-family: Georgia, serif;
+}
+.game-layout {
+  gap: 18px;
+}
+.game-panel,
+.side-panel {
+  background: rgba(255, 248, 233, 0.84);
+  border: 2px solid var(--ink);
+  box-shadow: 5px 5px 0 rgba(38, 59, 43, 0.16);
+}
+.game-panel {
+  padding: 16px;
+}
+.side-panel {
+  padding: 22px;
+}
+.board-wrap {
+  background: #efe2c6;
+  border: 2px solid var(--ink);
+}
+.board-wrap:after {
+  background: linear-gradient(
+    120deg,
+    rgba(255, 248, 233, 0.1),
+    transparent 60%
+  );
+}
+.board-message {
+  background: rgba(239, 226, 198, 0.84);
+}
+.board-message strong {
+  font-family: Georgia, serif;
+  font-weight: 700;
+}
+.primary-button {
+  background: var(--coral);
+  color: #fff8e9;
+  border: 2px solid var(--ink);
+  box-shadow: 3px 3px 0 var(--ink);
+  font-family: "DM Mono", monospace;
+}
+.primary-button:hover {
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0 var(--ink);
+}
+.score-row,
+.history-summary div,
+.setting-button,
+.control-button {
+  background: #f3e8d0;
+}
+.score-row {
+  border-left-color: transparent;
+}
+.score-row:first-child {
+  border-left-color: var(--coral);
+}
+.score-value,
+.history-dialog .score-value {
+  color: var(--coral);
+}
+.rules,
+.settings-box {
+  border-color: var(--line);
+}
+.history-button,
+.history-action,
+.setting-button,
+.icon-button,
+.control-button {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+.history-button:hover,
+.history-action:hover,
+.setting-button:hover {
+  background: var(--cyan);
+  color: var(--panel);
+}
+.setting-row b,
+.green {
+  color: var(--cyan);
+}
+.red {
+  color: var(--coral);
+}
+.yellow {
+  color: var(--yellow);
+}
+dialog {
+  background: var(--panel);
+  border: 2px solid var(--ink);
+  color: var(--ink);
+  box-shadow: 8px 8px 0 rgba(38, 59, 43, 0.22);
+}
+dialog p:not(.eyebrow) {
+  color: var(--muted);
+  font-family: Georgia, serif;
+}
+@media (max-width: 760px) {
+  .hero h1 {
+    font-size: 48px;
+  }
+  .game-panel,
+  .side-panel {
+    box-shadow: 3px 3px 0 rgba(38, 59, 43, 0.16);
   }
 }

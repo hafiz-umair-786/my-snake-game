@@ -12,12 +12,20 @@
   </head>
   <body>
     <main class="shell">
-      <header class="topbar">
+      <!-- <header class="topbar">
         <div class="brand">
           <span class="brand-mark">✦</span>
           <div><strong>NEON COIL</strong><small>ARCADE // ONLINE</small></div>
         </div>
         <div class="top-actions">
+          <button
+            class="theme-button"
+            id="themeButton"
+            aria-label="Change color theme"
+            title="Change color theme"
+          >
+            THEME
+          </button>
           <button
             class="icon-button"
             id="soundButton"
@@ -26,8 +34,8 @@
             ♫
           </button>
         </div>
-      </header>
-
+      </header> -->
+<!-- 
       <section class="hero">
         <div>
           <p class="eyebrow">CIRCUIT RUN 001</p>
@@ -40,39 +48,124 @@
           <span>BEST RUN</span><strong id="bestScore">0</strong
           ><small>POINTS</small>
         </div>
-      </section>
+      </section> -->
 
       <section class="game-layout">
+        <nav class="section-menu" aria-label="Main sections">
+          <span class="label">NAVIGATE</span>
+          <button class="section-button active" data-view="home">PLAY</button>
+          <button class="section-button" data-view="guide" id="guideButton">GUIDE</button>
+          <button class="section-button" data-view="history">HISTORY</button>
+          <button class="section-button" data-view="settings">SETTINGS</button>
+        </nav>
         <div class="game-panel">
-          <div class="panel-head">
-            <div>
-              <span class="label">CURRENT RUN</span
-              ><strong id="score">0</strong>
+          <section class="page-view active" id="homeView">
+            <div class="panel-head">
+              <div>
+                <span class="label">CURRENT RUN</span
+                ><strong id="score">0</strong>
+              </div>
+              <div class="run-stats">
+                <span>FOOD <b id="foodCount">0</b></span
+                ><span>POISON <b id="poisonCount">0</b></span
+                ><span>LIVES <b id="livesCount">3</b></span>
+              </div>
             </div>
-            <div class="run-stats">
-              <span>FOOD <b id="foodCount">0</b></span
-              ><span>POISON <b id="poisonCount">0</b></span
-              ><span>LIVES <b id="livesCount">3</b></span>
+            <div class="board-wrap">
+              <canvas id="board" width="800" height="500"></canvas>
+              <div class="board-message" id="boardMessage">
+                <span class="message-kicker">READY WHEN YOU ARE</span
+                ><strong>Press START<br />to enter the grid</strong
+                ><button class="primary-button" id="startButton">
+                  START RUN <span>↗</span>
+                </button>
+              </div>
             </div>
-          </div>
-          <div class="board-wrap">
-            <canvas id="board" width="800" height="500"></canvas>
-            <div class="board-message" id="boardMessage">
-              <span class="message-kicker">READY WHEN YOU ARE</span
-              ><strong>Press START<br />to enter the grid</strong
-              ><button class="primary-button" id="startButton">
-                START RUN <span>↗</span>
-              </button>
+            <div class="controls">
+              <button class="control-button" data-key="ArrowUp">↑</button>
+              <div>
+                <button class="control-button" data-key="ArrowLeft">←</button
+                ><button class="control-button" data-key="ArrowDown">↓</button
+                ><button class="control-button" data-key="ArrowRight">→</button>
+              </div>
             </div>
-          </div>
-          <div class="controls">
-            <button class="control-button" data-key="ArrowUp">↑</button>
-            <div>
-              <button class="control-button" data-key="ArrowLeft">←</button
-              ><button class="control-button" data-key="ArrowDown">↓</button
-              ><button class="control-button" data-key="ArrowRight">→</button>
+          </section>
+          <section class="page-view" id="guideView">
+            <span class="label">FIELD MANUAL</span>
+            <h2>How to play</h2>
+            <p class="view-intro">A few simple rules for a longer run.</p>
+            <ul class="guide-list">
+              <li>
+                <strong>Move</strong
+                ><span>Use the arrow keys or the touch controls.</span>
+              </li>
+              <li>
+                <strong>Grow</strong
+                ><span>Collect green energy cells for <b>+1</b>.</span>
+              </li>
+              <li>
+                <strong>Watch out</strong
+                ><span>Red poison cells remove <b>3</b> points.</span>
+              </li>
+              <li>
+                <strong>Stay alive</strong
+                ><span>Yellow obstacles cost one of your three lives.</span>
+              </li>
+              <li>
+                <strong>Keep going</strong
+                ><span
+                  >Obstacles move every 10 seconds. Build your best run.</span
+                >
+              </li>
+            </ul>
+          </section>
+          <section class="page-view" id="historyView">
+            <div class="panel-head view-heading">
+              <div>
+                <span class="label">PERSONAL RECORD</span>
+                <h2>Run history</h2>
+              </div>
+              <strong id="middleHistoryBest">0</strong>
             </div>
-          </div>
+            <div class="view-summary">
+              <span>RUNS <b id="middleHistoryTotal">0</b></span>
+              <span>LATEST <b id="middleHistoryLatest">--</b></span>
+            </div>
+            <div id="middleHistoryList" class="history-list">
+              <div class="empty">No runs yet. Make your first mark.</div>
+            </div>
+          </section>
+          <section class="page-view" id="settingsView">
+            <span class="label">RUN SETTINGS</span>
+            <h2>Make it yours</h2>
+            <div class="settings-view-list">
+              <div class="view-setting">
+                <span>Theme <b id="middleThemeValue">GARDEN</b></span>
+                <button class="setting-button" id="middleThemeButton">
+                  CHANGE
+                </button>
+              </div>
+              <div class="view-setting">
+                <span>Music <b id="middleMusicValue">OFF</b></span>
+                <button class="setting-button" id="middleMusicButton">
+                  TOGGLE
+                </button>
+              </div>
+              <div class="view-setting">
+                <span>Speed <b id="middleSpeedValue">3</b></span>
+                <div>
+                  <button class="setting-button" id="middleSpeedDown">-</button
+                  ><button class="setting-button" id="middleSpeedUp">+</button>
+                </div>
+              </div>
+              <div class="view-setting">
+                <span>Wrap edges <b id="middleWrapValue">ON</b></span
+                ><button class="setting-button toggle" id="middleWrapButton">
+                  ON
+                </button>
+              </div>
+            </div>
+          </section>
         </div>
         <aside class="side-panel">
           <div class="side-heading">
@@ -108,11 +201,6 @@
           </div>
         </aside>
       </section>
-
-      <footer>
-        <span>NEON COIL / 2026</span><span>Arrow keys or touch to move</span
-        ><button id="guideButton">HOW TO PLAY ↗</button>
-      </footer>
     </main>
     <dialog id="guideDialog">
       <button class="close" id="closeGuide">×</button>

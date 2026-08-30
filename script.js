@@ -7,7 +7,45 @@ const poisonEl = document.querySelector("#poisonCount");
 const livesEl = document.querySelector("#livesCount");
 const backgroundMusic = document.querySelector("#backgroundMusic");
 const message = document.querySelector("#boardMessage");
+const themeButton = document.querySelector("#themeButton");
+const middleThemeValue = document.querySelector("#middleThemeValue");
+const middleMusicValue = document.querySelector("#middleMusicValue");
 const grid = 25;
+const themes = ["garden", "midnight", "sunset"];
+let activeTheme = localStorage.getItem("neon-coil-theme") || "garden";
+if (!themes.includes(activeTheme)) activeTheme = "garden";
+const boardPalettes = {
+  garden: {
+    background: "#efe2c6",
+    grid: "rgba(38, 59, 43, 0.1)",
+    food: "#6d9b4a",
+    poison: "#c95f45",
+    obstacle: "#d19b45",
+    snake: "#4d8056",
+    head: "#fff8e9",
+    ink: "#263b2b",
+  },
+  midnight: {
+    background: "#27343a",
+    grid: "rgba(232, 224, 207, 0.12)",
+    food: "#b6c86a",
+    poison: "#e07a5f",
+    obstacle: "#e2b35f",
+    snake: "#83b692",
+    head: "#e8e0cf",
+    ink: "#172126",
+  },
+  sunset: {
+    background: "#f0d5b4",
+    grid: "rgba(75, 41, 37, 0.1)",
+    food: "#6d8b45",
+    poison: "#b94e3c",
+    obstacle: "#d68b3e",
+    snake: "#8a5a44",
+    head: "#fff4df",
+    ink: "#4b2925",
+  },
+};
 let snake,
   food,
   poison,
@@ -25,7 +63,7 @@ let snake,
   wrapAround = true;
 let best = Number(localStorage.getItem("neon-coil-best") || 0);
 let runHistory = JSON.parse(localStorage.getItem("neon-coil-history") || "[]");
-bestEl.textContent = best;
+if (bestEl) bestEl.textContent = best;
 
 function randomCell() {
   return {
@@ -96,9 +134,10 @@ function drawCell(cell, color, glow = color) {
   ctx.shadowBlur = 0;
 }
 function drawHead(cell) {
+  const palette = boardPalettes[activeTheme];
   ctx.shadowBlur = 16;
-  ctx.shadowColor = "#58d5d5";
-  ctx.fillStyle = "#f2f0e8";
+  ctx.shadowColor = palette.snake;
+  ctx.fillStyle = palette.head;
   ctx.beginPath();
   ctx.arc(
     cell.x * grid + grid / 2,
@@ -112,7 +151,7 @@ function drawHead(cell) {
   const centerX = cell.x * grid + grid / 2;
   const centerY = cell.y * grid + grid / 2;
   const perpendicular = { x: -direction.y, y: direction.x };
-  ctx.fillStyle = "#08111f";
+  ctx.fillStyle = palette.ink;
   [1, -1].forEach((side) => {
     ctx.beginPath();
     ctx.arc(
@@ -129,11 +168,40 @@ function updateSettings() {
   document.querySelector("#speedValue").textContent = speedLevel;
   document.querySelector("#wrapValue").textContent = wrapAround ? "ON" : "OFF";
   document.querySelector("#wrapButton").textContent = wrapAround ? "ON" : "OFF";
+  document.querySelector("#middleSpeedValue").textContent = speedLevel;
+  document.querySelector("#middleWrapValue").textContent = wrapAround
+    ? "ON"
+    : "OFF";
+  document.querySelector("#middleWrapButton").textContent = wrapAround
+    ? "ON"
+    : "OFF";
+}
+function applyTheme() {
+  document.documentElement.dataset.theme = activeTheme;
+  if (themeButton) themeButton.textContent = activeTheme.toUpperCase();
+  if (middleThemeValue)
+    middleThemeValue.textContent = activeTheme.toUpperCase();
+  localStorage.setItem("neon-coil-theme", activeTheme);
+  if (snake) draw();
+}
+function changeTheme() {
+  activeTheme = themes[(themes.indexOf(activeTheme) + 1) % themes.length];
+  applyTheme();
+}
+function showView(viewName) {
+  document.querySelectorAll(".section-button").forEach((button) => {
+    button.classList.toggle("active", button.dataset.view === viewName);
+  });
+  document.querySelectorAll(".page-view").forEach((view) => {
+    view.classList.toggle("active", view.id === `${viewName}View`);
+  });
+  if (viewName === "history") loadScores();
 }
 function draw() {
-  ctx.fillStyle = "#07101d";
+  const palette = boardPalettes[activeTheme];
+  ctx.fillStyle = palette.background;
   ctx.fillRect(0, 0, canvas.width, canvas.height);
-  ctx.strokeStyle = "rgba(88,213,213,.08)";
+  ctx.strokeStyle = palette.grid;
   for (let x = 0; x < canvas.width; x += grid) {
     ctx.beginPath();
     ctx.moveTo(x, 0);
@@ -146,12 +214,12 @@ function draw() {
     ctx.lineTo(canvas.width, y);
     ctx.stroke();
   }
-  drawCell(food, "#b7f34b");
-  drawCell(poison, "#ff6b5f");
+  drawCell(food, palette.food, palette.food);
+  drawCell(poison, palette.poison, palette.poison);
   obstacles.forEach((obstacle) => {
-    ctx.fillStyle = "#f8cf55";
+    ctx.fillStyle = palette.obstacle;
     ctx.shadowBlur = 12;
-    ctx.shadowColor = "#f8cf55";
+    ctx.shadowColor = palette.obstacle;
     ctx.beginPath();
     ctx.moveTo(obstacle.x * grid + grid / 2, obstacle.y * grid + 3);
     ctx.lineTo(obstacle.x * grid + grid - 3, obstacle.y * grid + grid / 2);
@@ -161,7 +229,9 @@ function draw() {
     ctx.fill();
     ctx.shadowBlur = 0;
   });
-  snake.slice(1).forEach((part) => drawCell(part, "#58d5d5", "#58d5d5"));
+  snake
+    .slice(1)
+    .forEach((part) => drawCell(part, palette.snake, palette.snake));
   drawHead(snake[0]);
 }
 function step() {
@@ -231,7 +301,7 @@ function endRun() {
   if (score > best) {
     best = score;
     localStorage.setItem("neon-coil-best", best);
-    bestEl.textContent = best;
+    if (bestEl) bestEl.textContent = best;
   }
   runHistory.unshift({
     score,
@@ -262,14 +332,13 @@ function setDirection(key) {
 }
 async function loadScores() {
   const data = runHistory;
-  document.querySelector("#historyTotal").textContent = data.length;
-  document.querySelector("#historyBest").textContent = data.length
+  const bestScore = data.length
     ? Math.max(...data.map((item) => item.score))
     : "0";
-  document.querySelector("#historyLatest").textContent = data.length
+  const latestScore = data.length
     ? `${data[0].score > 0 ? "+" : ""}${data[0].score}`
     : "--";
-  document.querySelector("#historyList").innerHTML = data.length
+  const historyMarkup = data.length
     ? data
         .map(
           (item, index) =>
@@ -277,6 +346,14 @@ async function loadScores() {
         )
         .join("")
     : '<div class="empty">No runs yet. Make your first mark.</div>';
+  document.querySelector("#historyTotal").textContent = data.length;
+  document.querySelector("#historyBest").textContent = bestScore;
+  document.querySelector("#historyLatest").textContent = latestScore;
+  document.querySelector("#historyList").innerHTML = historyMarkup;
+  document.querySelector("#middleHistoryTotal").textContent = data.length;
+  document.querySelector("#middleHistoryBest").textContent = bestScore;
+  document.querySelector("#middleHistoryLatest").textContent = latestScore;
+  document.querySelector("#middleHistoryList").innerHTML = historyMarkup;
 }
 function downloadHistory() {
   const lines = ["NEON COIL - RUN HISTORY", "========================", ""];
@@ -334,25 +411,30 @@ document
   .addEventListener("click", () =>
     document.querySelector("#guideDialog").close(),
   );
-document.querySelector("#soundButton").addEventListener("click", (event) => {
-  const button = event.currentTarget;
+function toggleMusic(button) {
   if (backgroundMusic.paused) {
     backgroundMusic
       .play()
       .then(() => {
         button.textContent = "×";
+        middleMusicValue.textContent = "ON";
         button.setAttribute("aria-label", "Turn music off");
       })
       .catch(() => {
         button.textContent = "♫";
+        middleMusicValue.textContent = "OFF";
         button.setAttribute("aria-label", "Music file unavailable");
       });
   } else {
     backgroundMusic.pause();
     button.textContent = "♫";
+    middleMusicValue.textContent = "OFF";
     button.setAttribute("aria-label", "Turn music on");
   }
-});
+}
+const soundButton = document.querySelector("#soundButton");
+if (soundButton)
+  soundButton.addEventListener("click", () => toggleMusic(soundButton));
 document
   .querySelector("#historyButton")
   .addEventListener("click", () =>
@@ -367,6 +449,31 @@ document
   .querySelector("#downloadHistory")
   .addEventListener("click", downloadHistory);
 document.querySelector("#clearHistory").addEventListener("click", clearHistory);
+if (themeButton) themeButton.addEventListener("click", changeTheme);
+document
+  .querySelector("#middleThemeButton")
+  .addEventListener("click", changeTheme);
+document.querySelector("#middleMusicButton").addEventListener("click", () => {
+  if (soundButton) document.querySelector("#soundButton").click();
+  else toggleMusic(document.querySelector("#middleMusicButton"));
+});
+document.querySelectorAll(".section-button").forEach((button) => {
+  button.addEventListener("click", () => showView(button.dataset.view));
+});
+document.querySelector("#middleSpeedDown").addEventListener("click", () => {
+  speedLevel = Math.max(1, speedLevel - 1);
+  updateSettings();
+  if (running) start();
+});
+document.querySelector("#middleSpeedUp").addEventListener("click", () => {
+  speedLevel = Math.min(7, speedLevel + 1);
+  updateSettings();
+  if (running) start();
+});
+document.querySelector("#middleWrapButton").addEventListener("click", () => {
+  wrapAround = !wrapAround;
+  updateSettings();
+});
 document.querySelector("#speedDown").addEventListener("click", () => {
   speedLevel = Math.max(1, speedLevel - 1);
   updateSettings();
@@ -382,5 +489,6 @@ document.querySelector("#wrapButton").addEventListener("click", () => {
   updateSettings();
 });
 reset();
+applyTheme();
 draw();
 loadScores();
