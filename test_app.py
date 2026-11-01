@@ -100,6 +100,36 @@ class SnakeServerTests(unittest.TestCase):
                 self.assertIn(f'data-view="{view_name}"', html)
                 self.assertIn(f'id="{view_name}View"', html)
 
+    def test_mobile_menu_routes_to_individual_views_and_back(self):
+        html = (app.ROOT / "index.html").read_text(encoding="utf-8")
+        script = (app.ROOT / "script.js").read_text(encoding="utf-8")
+        css = (app.ROOT / "style.css").read_text(encoding="utf-8")
+        self.assertIn('<body data-mobile-view="menu">', html)
+        for view_name in ("home", "guide", "history", "settings"):
+            with self.subTest(view_name=view_name):
+                self.assertIn(f'data-mobile-view="{view_name}"', html)
+                self.assertIn(f'body[data-mobile-view="{view_name}"]', css)
+        self.assertIn("function showMobileView(viewName)", script)
+        self.assertIn('showMobileView("menu")', script)
+        self.assertIn('body[data-mobile-view="home"] .side-panel', css)
+
+    def test_mobile_settings_and_history_have_responsive_layouts(self):
+        css = (app.ROOT / "style.css").read_text(encoding="utf-8")
+        mobile_styles = css[css.rfind("@media (max-width: 760px)"):]
+        self.assertIn(".view-setting {", mobile_styles)
+        self.assertIn("justify-content: space-between", mobile_styles)
+        self.assertIn(".view-summary {", mobile_styles)
+        self.assertIn("#middleHistoryList .score-row", mobile_styles)
+
+    def test_mobile_guide_opens_dialog_and_shows_instruction_layout(self):
+        script = (app.ROOT / "script.js").read_text(encoding="utf-8")
+        css = (app.ROOT / "style.css").read_text(encoding="utf-8")
+        self.assertIn('if (viewName === "guide")', script)
+        self.assertIn('document.querySelector("#guideDialog").showModal()', script)
+        mobile_styles = css[css.rfind("@media (max-width: 760px)"):]
+        self.assertIn("#guideView .guide-list", mobile_styles)
+        self.assertIn("#guideDialog {", mobile_styles)
+
     def test_guide_is_an_ordered_user_facing_list(self):
         html = (app.ROOT / "index.html").read_text(encoding="utf-8")
         self.assertIn('<ul class="guide-list">', html)
@@ -109,8 +139,8 @@ class SnakeServerTests(unittest.TestCase):
     def test_settings_view_contains_all_controls(self):
         html = (app.ROOT / "index.html").read_text(encoding="utf-8")
         for control_id in (
-            "middleThemeButton", "middleMusicButton", "middleSpeedDown",
-            "middleSpeedUp", "middleWrapButton",
+            "middleThemeButton", "mobileThemeButton", "middleMusicButton",
+            "middleSpeedDown", "middleSpeedUp", "middleWrapButton",
         ):
             with self.subTest(control_id=control_id):
                 self.assertIn(f'id="{control_id}"', html)
@@ -124,19 +154,30 @@ class SnakeServerTests(unittest.TestCase):
 
     def test_theme_and_music_settings_are_wired(self):
         script = (app.ROOT / "script.js").read_text(encoding="utf-8")
-        self.assertIn('const themes = ["garden", "midnight", "sunset"]', script)
+        self.assertIn('const themes = ["cyberpunk", "forest", "retro"]', script)
+        self.assertIn("document.body.dataset.theme = activeTheme", script)
         self.assertIn('localStorage.setItem("neon-coil-theme", activeTheme)', script)
         self.assertIn('document.querySelector("#middleMusicButton")', script)
         self.assertIn('document.querySelector("#soundButton").click()', script)
 
     def test_each_theme_has_a_board_palette(self):
         script = (app.ROOT / "script.js").read_text(encoding="utf-8")
-        for theme_name in ("garden", "midnight", "sunset"):
+        for theme_name in ("cyberpunk", "forest", "retro"):
             with self.subTest(theme_name=theme_name):
                 self.assertIn(f"  {theme_name}: {{", script)
         for color_name in ("background", "grid", "food", "poison", "obstacle", "snake", "head", "ink"):
             with self.subTest(color_name=color_name):
                 self.assertIn(f"    {color_name}:", script)
+
+    def test_dark_themes_define_dynamic_ui_tokens_and_button_states(self):
+        css = (app.ROOT / "style.css").read_text(encoding="utf-8")
+        for theme_name in ("cyberpunk", "forest", "retro"):
+            with self.subTest(theme_name=theme_name):
+                self.assertIn(f'[data-theme="{theme_name}"]', css)
+        self.assertIn("body[data-theme] .setting-button:hover", css)
+        self.assertIn("body[data-theme] .setting-button:active", css)
+        self.assertIn("--text-muted:", css)
+        self.assertIn("--positive:", css)
 
 
 if __name__ == "__main__":

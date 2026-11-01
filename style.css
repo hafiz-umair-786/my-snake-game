@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Space+Grotesk:wght@400;500;600;700&display=swap");
+
 .history-button {
   width: 100%;
   margin: 6px 0 2px;
@@ -14,38 +15,47 @@
     color 0.2s,
     transform 0.2s;
 }
+
 .history-button span {
   float: right;
 }
+
 .history-button:hover {
   background: var(--cyan);
   color: var(--ink);
   transform: translateY(-2px);
 }
+
 .history-dialog {
   width: min(720px, calc(100% - 28px));
   max-width: 720px;
 }
+
 .history-dialog h2 {
   margin: 0 0 24px;
 }
+
 .history-list {
   display: grid;
   gap: 8px;
   max-height: 52vh;
   overflow: auto;
 }
+
 .history-dialog .score-row {
   grid-template-columns: 38px 1fr auto;
 }
+
 .history-dialog .history-head {
   grid-template-columns: 38px 1fr auto;
 }
+
 .history-actions {
   display: flex;
   gap: 8px;
   margin: -8px 0 22px;
 }
+
 .history-action {
   padding: 10px 12px;
   border: 1px solid var(--cyan);
@@ -54,18 +64,22 @@
   font: 10px "DM Mono";
   letter-spacing: 0.08em;
 }
+
 .history-action:hover {
   background: var(--cyan);
   color: var(--ink);
 }
+
 .history-action.danger {
   border-color: var(--coral);
   color: var(--coral);
 }
+
 .history-action.danger:hover {
   background: var(--coral);
   color: var(--ink);
 }
+
 .history-summary {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -74,6 +88,7 @@
   background: var(--line);
   border: 1px solid var(--line);
 }
+
 .history-summary div {
   display: flex;
   flex-direction: column;
@@ -81,18 +96,22 @@
   padding: 14px 16px;
   background: #12243b;
 }
+
 .history-summary span {
   color: var(--muted);
   font: 9px "DM Mono";
   letter-spacing: 0.1em;
 }
+
 .history-summary strong {
   color: var(--lime);
   font: 500 24px "Space Grotesk";
 }
+
 .history-list {
   padding-right: 4px;
 }
+
 .history-dialog .score-row {
   padding: 15px 16px;
   border: 1px solid transparent;
@@ -100,21 +119,26 @@
     border-color 0.2s,
     background 0.2s;
 }
+
 .history-dialog .score-row:hover {
   background: #172d47;
   border-color: var(--cyan);
 }
+
 .history-dialog .rank {
   color: var(--cyan);
   font: 11px "DM Mono";
 }
+
 .history-dialog .score-name strong {
   font-size: 14px;
 }
+
 .history-dialog .score-value {
   color: var(--lime);
   font: 600 20px "Space Grotesk";
 }
+
 .history-dialog .empty {
   padding: 32px 16px;
   border: 1px dashed var(--line);
@@ -122,6 +146,7 @@
   color: var(--muted);
   font: 12px "DM Mono";
 }
+
 .history-head {
   display: grid;
   grid-template-columns: 30px 1fr auto;
@@ -131,29 +156,35 @@
   letter-spacing: 0.1em;
   margin-bottom: 8px;
 }
+
 .score-name {
   display: flex;
   flex-direction: column;
   gap: 4px;
 }
+
 .score-name small,
 .score-value small {
   font: 10px "DM Mono";
   color: var(--muted);
   line-height: 1.45;
 }
+
 .score-value {
   text-align: right;
 }
+
 .score-value small {
   display: block;
   margin-top: 4px;
 }
+
 .settings-box {
   border-top: 1px solid var(--line);
   margin-top: 28px;
   padding-top: 22px;
 }
+
 .setting-row {
   display: flex;
   align-items: center;
@@ -162,11 +193,13 @@
   color: var(--muted);
   font: 12px "DM Mono";
 }
+
 .setting-row b {
   color: var(--lime);
   font-weight: 400;
   margin-left: 7px;
 }
+
 .setting-button {
   min-width: 34px;
   height: 30px;
@@ -180,15 +213,18 @@
     color 0.2s,
     transform 0.2s;
 }
+
 .setting-button:hover {
   background: var(--cyan);
   color: var(--ink);
   transform: translateY(-2px);
 }
+
 .setting-button.toggle {
   min-width: 48px;
   color: var(--lime);
 }
+
 :root {
   --ink: #08111f;
   --panel: #0d1b2e;
@@ -200,9 +236,11 @@
   --cyan: #58d5d5;
   --yellow: #f8cf55;
 }
+
 * {
   box-sizing: border-box;
 }
+
 body {
   margin: 0;
   background: var(--ink);
@@ -214,11 +252,13 @@ body {
     linear-gradient(90deg, rgba(88, 213, 213, 0.035) 1px, transparent 1px);
   background-size: 42px 42px;
 }
+
 .shell {
   max-width: 1250px;
   margin: auto;
   padding: 28px clamp(18px, 4vw, 56px);
 }
+
 .topbar,
 footer,
 .panel-head,
@@ -227,11 +267,13 @@ footer,
   align-items: center;
   justify-content: space-between;
 }
+
 .brand {
   display: flex;
   align-items: center;
   gap: 12px;
 }
+
 .brand-mark {
   color: var(--lime);
   font-size: 29px;
@@ -241,16 +283,19 @@ footer,
   display: block;
   letter-spacing: 0.08em;
 }
+
 .brand small {
   color: var(--muted);
   font-size: 10px;
   letter-spacing: 0.12em;
 }
+
 .top-actions {
   display: flex;
   gap: 18px;
   align-items: center;
 }
+
 .theme-button {
   border: 0;
   padding: 8px 0;
@@ -262,15 +307,18 @@ footer,
   letter-spacing: 0.06em;
   cursor: pointer;
 }
+
 .theme-button:hover {
   color: var(--coral);
 }
+
 .live-dot,
 .pulse {
   font-size: 11px;
   color: var(--lime);
   letter-spacing: 0.12em;
 }
+
 .live-dot:before {
   content: "";
   display: inline-block;
@@ -281,11 +329,13 @@ footer,
   margin-right: 7px;
   box-shadow: 0 0 14px var(--lime);
 }
+
 button {
   font: inherit;
   color: inherit;
   cursor: pointer;
 }
+
 .icon-button {
   background: none;
   border: 1px solid var(--line);
@@ -294,6 +344,7 @@ button {
   color: var(--cyan);
   font-size: 18px;
 }
+
 .hero {
   display: flex;
   justify-content: space-between;
@@ -301,30 +352,36 @@ button {
   padding: 75px 0 52px;
   border-bottom: 1px solid var(--line);
 }
+
 .eyebrow {
   color: var(--cyan);
   font-size: 11px;
   letter-spacing: 0.18em;
   margin: 0 0 15px;
 }
+
 .hero h1 {
   font-size: clamp(42px, 7vw, 82px);
   line-height: 0.92;
   letter-spacing: -0.04em;
   margin: 0;
 }
+
 .hero h1 em {
   color: var(--lime);
   font-style: normal;
 }
+
 .subcopy {
   color: var(--muted);
   font-size: 17px;
   margin: 25px 0 0;
 }
+
 .hero-stat {
   text-align: right;
 }
+
 .hero-stat span,
 .hero-stat small {
   display: block;
@@ -332,44 +389,53 @@ button {
   color: var(--muted);
   letter-spacing: 0.12em;
 }
+
 .hero-stat strong {
   font-size: 82px;
   color: var(--lime);
   line-height: 1;
 }
+
 .game-layout {
   display: grid;
   grid-template-columns: minmax(0, 1.65fr) minmax(280px, 0.75fr);
   gap: 24px;
   padding: 30px 0;
 }
+
 .game-panel,
 .side-panel {
   background: rgba(13, 27, 46, 0.9);
   border: 1px solid var(--line);
 }
+
 .game-panel {
   padding: 18px;
 }
+
 .label {
   display: block;
   font-size: 10px;
   color: var(--muted);
   letter-spacing: 0.14em;
 }
+
 .panel-head strong {
   font-size: 35px;
   color: var(--lime);
 }
+
 .run-stats {
   display: flex;
   gap: 20px;
   font: 11px "DM Mono";
   color: var(--muted);
 }
+
 .run-stats b {
   color: var(--cream);
 }
+
 .board-wrap {
   position: relative;
   margin-top: 14px;
@@ -377,22 +443,23 @@ button {
   border: 1px solid #1a3049;
   aspect-ratio: 8/5;
 }
+
 .board-wrap:after {
   content: "";
   position: absolute;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(
-    circle at 50% 40%,
-    transparent 20%,
-    rgba(4, 10, 18, 0.28)
-  );
+  background: radial-gradient(circle at 50% 40%,
+      transparent 20%,
+      rgba(4, 10, 18, 0.28));
 }
+
 .board-wrap canvas {
   width: 100%;
   height: 100%;
   display: block;
 }
+
 .board-message {
   position: absolute;
   inset: 0;
@@ -404,16 +471,19 @@ button {
   background: rgba(7, 16, 29, 0.78);
   z-index: 2;
 }
+
 .board-message strong {
   font-size: 28px;
   line-height: 1.05;
   margin: 5px 0 20px;
 }
+
 .message-kicker {
   font: 10px "DM Mono";
   color: var(--cyan);
   letter-spacing: 0.16em;
 }
+
 .primary-button {
   border: 0;
   background: var(--lime);
@@ -425,27 +495,34 @@ button {
     transform 0.2s,
     box-shadow 0.2s;
 }
+
 .primary-button:hover {
   transform: translateY(-3px);
   box-shadow: 0 8px 25px rgba(183, 243, 75, 0.25);
 }
+
 .controls {
   display: none;
 }
+
 .side-panel {
   padding: 22px;
 }
+
 .side-heading h2 {
   font-size: 28px;
   margin: 5px 0 25px;
 }
+
 .pulse {
   color: var(--coral);
 }
+
 .scores {
   display: grid;
   gap: 8px;
 }
+
 .score-row {
   display: grid;
   grid-template-columns: 30px 1fr auto;
@@ -455,30 +532,37 @@ button {
   border-left: 2px solid transparent;
   animation: rise 0.35s both;
 }
+
 .score-row:first-child {
   border-left-color: var(--lime);
 }
+
 .rank {
   font: 12px "DM Mono";
   color: var(--muted);
 }
+
 .score-name {
   font-weight: 600;
 }
+
 .score-value {
   font: 15px "DM Mono";
   color: var(--lime);
 }
+
 .empty {
   color: var(--muted);
   font-size: 14px;
   padding: 15px 0;
 }
+
 .rules {
   border-top: 1px solid var(--line);
   margin-top: 28px;
   padding-top: 22px;
 }
+
 .rules p {
   display: flex;
   gap: 10px;
@@ -486,19 +570,24 @@ button {
   color: var(--muted);
   font: 12px "DM Mono";
 }
+
 .rules strong {
   color: var(--cream);
   font-weight: 400;
 }
+
 .green {
   color: var(--lime);
 }
+
 .red {
   color: var(--coral);
 }
+
 .yellow {
   color: var(--yellow);
 }
+
 footer {
   border-top: 1px solid var(--line);
   padding-top: 20px;
@@ -506,6 +595,7 @@ footer {
   font-size: 10px;
   letter-spacing: 0.1em;
 }
+
 footer button {
   background: none;
   border: 0;
@@ -513,6 +603,7 @@ footer button {
   font: 10px "DM Mono";
   letter-spacing: 0.1em;
 }
+
 .close {
   position: absolute;
   right: 17px;
@@ -522,6 +613,7 @@ footer button {
   font-size: 28px;
   color: var(--muted);
 }
+
 dialog {
   max-width: 440px;
   background: var(--panel);
@@ -530,49 +622,61 @@ dialog {
   padding: 35px;
   box-shadow: 0 20px 70px #000;
 }
+
 dialog::backdrop {
   background: rgba(0, 0, 0, 0.7);
 }
+
 dialog h2 {
   font-size: 36px;
   margin: 0;
 }
+
 dialog p:not(.eyebrow) {
   color: var(--muted);
   line-height: 1.6;
 }
+
 @keyframes rise {
   from {
     opacity: 0;
     transform: translateY(8px);
   }
+
   to {
     opacity: 1;
     transform: none;
   }
 }
+
 @media (max-width: 760px) {
   .shell {
     padding: 20px 14px;
   }
+
   .hero {
     padding: 48px 0 30px;
   }
+
   .hero-stat {
     display: none;
   }
+
   .game-layout {
     grid-template-columns: 1fr;
     padding-top: 18px;
   }
+
   .side-panel {
     order: 2;
   }
+
   .controls {
     display: block;
     text-align: center;
     padding: 18px 0 2px;
   }
+
   .control-button {
     width: 54px;
     height: 44px;
@@ -582,10 +686,12 @@ dialog p:not(.eyebrow) {
     color: var(--cyan);
     font-size: 22px;
   }
+
   .control-button:active {
     background: var(--lime);
     color: var(--ink);
   }
+
   footer {
     display: grid;
     grid-template-columns: 1fr auto;
@@ -593,72 +699,87 @@ dialog p:not(.eyebrow) {
     padding: 18px 2px 4px;
     line-height: 1.5;
   }
+
   footer span:nth-child(2) {
     grid-column: 1 / -1;
     grid-row: 2;
     color: var(--muted);
     letter-spacing: 0.06em;
   }
+
   footer button {
     grid-column: 2;
     grid-row: 1;
     min-height: 40px;
     padding: 8px 0 8px 10px;
   }
+
   .history-dialog {
     width: calc(100% - 24px);
     max-height: calc(100dvh - 24px);
     overflow: auto;
     padding: 30px 16px 18px;
   }
+
   .history-dialog h2 {
     margin-bottom: 18px;
   }
+
   .history-summary {
     grid-template-columns: 1fr;
     gap: 1px;
     margin-bottom: 18px;
   }
+
   .history-summary div {
     flex-direction: row;
     align-items: baseline;
     justify-content: space-between;
     padding: 11px 12px;
   }
+
   .history-summary strong {
     font-size: 20px;
   }
+
   .history-actions {
     display: grid;
     grid-template-columns: 1fr 1fr;
     margin: -2px 0 18px;
   }
+
   .history-action {
     min-height: 42px;
     padding: 8px 6px;
     line-height: 1.3;
   }
+
   .history-head {
     grid-template-columns: 30px 1fr auto;
     gap: 8px;
     padding: 0 8px;
   }
+
   .history-dialog .score-row {
     grid-template-columns: 30px minmax(0, 1fr) auto;
     gap: 8px;
     padding: 12px 8px;
   }
+
   .history-dialog .score-name strong,
   .history-dialog .score-name small,
   .history-dialog .score-value small {
     overflow-wrap: anywhere;
   }
+
   .history-dialog .score-value {
     font-size: 18px;
   }
+
   .subcopy {
     font-size: 14px;
   }
+
   .board-message strong {
     font-size: 22px;
   }
@@ -675,17 +796,20 @@ dialog p:not(.eyebrow) {
   --cyan: #83b692;
   --yellow: #e2b35f;
 }
+
 [data-theme="midnight"] body {
   background-color: #172126;
   background-image:
     radial-gradient(rgba(232, 224, 207, 0.08) 0.7px, transparent 0.7px),
     linear-gradient(135deg, rgba(29, 41, 48, 0.8), transparent 60%);
 }
+
 [data-theme="midnight"] .game-panel,
 [data-theme="midnight"] .side-panel,
 [data-theme="midnight"] .board-message {
   background-color: rgba(29, 41, 48, 0.9);
 }
+
 [data-theme="sunset"] {
   --ink: #4b2925;
   --panel: #fff4df;
@@ -697,6 +821,7 @@ dialog p:not(.eyebrow) {
   --cyan: #8a5a44;
   --yellow: #d68b3e;
 }
+
 [data-theme="sunset"] body {
   background-color: #e9c7a4;
   background-image:
@@ -709,15 +834,18 @@ dialog p:not(.eyebrow) {
     grid-template-columns: minmax(135px, 1fr) minmax(0, 2fr) minmax(235px, 1fr);
     align-items: start;
   }
+
   .section-menu {
     display: grid;
     align-content: start;
     gap: 8px;
     padding: 12px 8px 0 0;
   }
+
   .section-menu .label {
     margin: 0 0 8px 4px;
   }
+
   .section-button {
     border: 0;
     border-left: 3px solid transparent;
@@ -731,30 +859,36 @@ dialog p:not(.eyebrow) {
     letter-spacing: 0.08em;
     cursor: pointer;
   }
+
   .section-button:hover,
   .section-button.active {
     border-left-color: var(--coral);
     background: rgba(255, 248, 233, 0.55);
     color: var(--ink);
   }
+
   .page-view {
     display: none;
   }
+
   .page-view.active {
     display: block;
   }
+
   .page-view h2 {
     margin: 6px 0 8px;
     font:
       700 38px Georgia,
       serif;
   }
+
   .view-intro {
     color: var(--muted);
     font:
       italic 17px Georgia,
       serif;
   }
+
   .guide-list {
     display: grid;
     gap: 0;
@@ -763,6 +897,7 @@ dialog p:not(.eyebrow) {
     list-style: none;
     border-top: 1px solid var(--line);
   }
+
   .guide-list li {
     display: grid;
     grid-template-columns: 125px 1fr;
@@ -774,6 +909,7 @@ dialog p:not(.eyebrow) {
       14px Georgia,
       serif;
   }
+
   .guide-list strong {
     color: var(--ink);
     font:
@@ -782,15 +918,18 @@ dialog p:not(.eyebrow) {
     letter-spacing: 0.06em;
     text-transform: uppercase;
   }
+
   .view-heading {
     align-items: start;
   }
-  .view-heading > strong {
+
+  .view-heading>strong {
     color: var(--coral);
     font:
       700 44px Georgia,
       serif;
   }
+
   .view-summary {
     display: flex;
     gap: 22px;
@@ -803,14 +942,17 @@ dialog p:not(.eyebrow) {
       10px "DM Mono",
       monospace;
   }
+
   .view-summary b {
     color: var(--ink);
     margin-left: 5px;
   }
+
   .settings-view-list {
     margin-top: 28px;
     border-top: 1px solid var(--line);
   }
+
   .view-setting {
     display: flex;
     align-items: center;
@@ -822,11 +964,13 @@ dialog p:not(.eyebrow) {
       14px "DM Mono",
       monospace;
   }
+
   .view-setting b {
     color: var(--cyan);
     font-weight: 400;
     margin-left: 6px;
   }
+
   .view-setting .setting-button {
     min-width: 72px;
     padding: 0 8px;
@@ -834,7 +978,9 @@ dialog p:not(.eyebrow) {
     letter-spacing: 0.04em;
   }
 }
+
 @media (max-width: 760px) {
+
   .section-menu,
   .page-view:not(#homeView) {
     display: none;
@@ -853,6 +999,7 @@ dialog p:not(.eyebrow) {
   --cyan: #2f6d3e;
   --yellow: #d19b45;
 }
+
 body {
   background-color: #e7d7b8;
   color: var(--ink);
@@ -864,9 +1011,11 @@ body {
     9px 9px,
     100% 100%;
 }
+
 .shell {
   max-width: 1180px;
 }
+
 .brand strong,
 .hero h1,
 .side-heading h2,
@@ -874,13 +1023,16 @@ dialog h2 {
   font-family: Georgia, serif;
   letter-spacing: 0;
 }
+
 .brand-mark {
   color: var(--coral);
   transform: rotate(-8deg);
 }
+
 .brand strong {
   font-size: 18px;
 }
+
 .brand small,
 .eyebrow,
 .label,
@@ -899,66 +1051,79 @@ footer button,
   font-family: "DM Mono", monospace;
   letter-spacing: 0.06em;
 }
+
 .hero {
   padding: 68px 0 48px;
   border-bottom: 2px solid var(--ink);
 }
+
 .eyebrow,
 .message-kicker {
   color: var(--coral);
 }
+
 .hero h1 {
   font-size: clamp(42px, 7vw, 78px);
   line-height: 0.98;
   font-weight: 700;
 }
+
 .hero h1 em {
   color: var(--cyan);
   font-style: italic;
 }
+
 .subcopy {
   color: var(--muted);
   font-family: Georgia, serif;
   font-style: italic;
 }
+
 .hero-stat strong,
 .panel-head strong {
   color: var(--coral);
   font-family: Georgia, serif;
 }
+
 .game-layout {
   gap: 18px;
 }
+
 .game-panel,
 .side-panel {
   background: rgba(255, 248, 233, 0.84);
   border: 2px solid var(--ink);
   box-shadow: 5px 5px 0 rgba(38, 59, 43, 0.16);
 }
+
 .game-panel {
   padding: 16px;
 }
+
 .side-panel {
   padding: 22px;
 }
+
 .board-wrap {
   background: #efe2c6;
   border: 2px solid var(--ink);
 }
+
 .board-wrap:after {
-  background: linear-gradient(
-    120deg,
-    rgba(255, 248, 233, 0.1),
-    transparent 60%
-  );
+  background: linear-gradient(120deg,
+      rgba(255, 248, 233, 0.1),
+      transparent 60%);
 }
+
 .board-message {
   background: rgba(239, 226, 198, 0.84);
 }
+
 .board-message strong {
   font-family: Georgia, serif;
   font-weight: 700;
 }
+
 .primary-button {
   background: var(--coral);
   color: #fff8e9;
@@ -966,30 +1131,37 @@ footer button,
   box-shadow: 3px 3px 0 var(--ink);
   font-family: "DM Mono", monospace;
 }
+
 .primary-button:hover {
   transform: translate(-1px, -1px);
   box-shadow: 5px 5px 0 var(--ink);
 }
+
 .score-row,
 .history-summary div,
 .setting-button,
 .control-button {
   background: #f3e8d0;
 }
+
 .score-row {
   border-left-color: transparent;
 }
+
 .score-row:first-child {
   border-left-color: var(--coral);
 }
+
 .score-value,
 .history-dialog .score-value {
   color: var(--coral);
 }
+
 .rules,
 .settings-box {
   border-color: var(--line);
 }
+
 .history-button,
 .history-action,
 .setting-button,
@@ -998,38 +1170,728 @@ footer button,
   border-color: var(--ink);
   color: var(--ink);
 }
+
 .history-button:hover,
 .history-action:hover,
 .setting-button:hover {
   background: var(--cyan);
   color: var(--panel);
 }
+
 .setting-row b,
 .green {
   color: var(--cyan);
 }
+
 .red {
   color: var(--coral);
 }
+
 .yellow {
   color: var(--yellow);
 }
+
 dialog {
   background: var(--panel);
   border: 2px solid var(--ink);
   color: var(--ink);
   box-shadow: 8px 8px 0 rgba(38, 59, 43, 0.22);
 }
+
 dialog p:not(.eyebrow) {
   color: var(--muted);
   font-family: Georgia, serif;
 }
+
 @media (max-width: 760px) {
   .hero h1 {
     font-size: 48px;
   }
+
   .game-panel,
   .side-panel {
     box-shadow: 3px 3px 0 rgba(38, 59, 43, 0.16);
   }
+}
+
+[data-theme="cyberpunk"] {
+  color-scheme: dark;
+  --page-bg: #0b0e14;
+  --panel-bg: #161b22;
+  --surface-bg: #1d242e;
+  --surface-hover: #252e3a;
+  --text-primary: #e6edf3;
+  --text-muted: #a0aab8;
+  --heading: #5debfF;
+  --accent: #ff4fa3;
+  --positive: #61f2a5;
+  --negative: #ff7185;
+  --warning: #ffca70;
+  --button-bg: #7354bd;
+  --button-hover: #8969d2;
+  --button-text: #f2edff;
+  --line: #303946;
+  --glow: rgba(167, 139, 250, 0.2);
+}
+
+[data-theme="forest"] {
+  color-scheme: dark;
+  --page-bg: #101923;
+  --panel-bg: #17242d;
+  --surface-bg: #1d3038;
+  --surface-hover: #25413f;
+  --text-primary: #e6f0ec;
+  --text-muted: #b7b6cc;
+  --heading: #bfe9df;
+  --accent: #e8b96a;
+  --positive: #8bd17c;
+  --negative: #f07d79;
+  --warning: #e8b96a;
+  --button-bg: #1b6e68;
+  --button-hover: #25847b;
+  --button-text: #effbf6;
+  --line: #344a4e;
+  --glow: rgba(80, 185, 167, 0.18);
+}
+
+[data-theme="retro"] {
+  color-scheme: dark;
+  --page-bg: #100f2b;
+  --panel-bg: #1a1940;
+  --surface-bg: #24234c;
+  --surface-hover: #302e5d;
+  --text-primary: #f2efff;
+  --text-muted: #b9b6d2;
+  --heading: #ffc078;
+  --accent: #f4a261;
+  --positive: #75ff70;
+  --negative: #ff7185;
+  --warning: #ffc15c;
+  --button-bg: #a95132;
+  --button-hover: #c5663d;
+  --button-text: #fff3e7;
+  --line: #3a3768;
+  --glow: rgba(244, 162, 97, 0.2);
+}
+
+[data-theme] {
+  --ink: var(--text-primary);
+  --panel: var(--panel-bg);
+  --cream: var(--text-primary);
+  --muted: var(--text-muted);
+  --lime: var(--positive);
+  --coral: var(--negative);
+  --cyan: var(--heading);
+  --yellow: var(--warning);
+}
+
+body[data-theme] {
+  background-color: var(--page-bg);
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    radial-gradient(ellipse at 50% 0, var(--glow), transparent 58%);
+  background-size: 42px 42px, 42px 42px, 100% 100%;
+  color: var(--text-primary);
+}
+
+body[data-theme] .game-panel,
+body[data-theme] .side-panel,
+body[data-theme] dialog {
+  background: var(--panel-bg);
+  border: 1px solid var(--line);
+  color: var(--text-primary);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.2);
+}
+
+body[data-theme] .board-wrap {
+  background: var(--page-bg);
+  border: 1px solid var(--line);
+}
+
+body[data-theme] .board-message {
+  background: color-mix(in srgb, var(--page-bg) 86%, transparent);
+  color: var(--text-primary);
+}
+
+body[data-theme] h1,
+body[data-theme] h2,
+body[data-theme] .board-message strong,
+body[data-theme] .side-heading h2 {
+  color: var(--heading);
+}
+
+body[data-theme] .label,
+body[data-theme] .view-intro,
+body[data-theme] .setting-row,
+body[data-theme] .view-setting,
+body[data-theme] .rules p,
+body[data-theme] .empty,
+body[data-theme] .score-name small,
+body[data-theme] .score-value small,
+body[data-theme] dialog p:not(.eyebrow) {
+  color: var(--text-muted);
+}
+
+body[data-theme] .run-stats,
+body[data-theme] .rules strong,
+body[data-theme] .guide-list,
+body[data-theme] .view-summary,
+body[data-theme] .history-head,
+body[data-theme] .rank {
+  color: var(--text-muted);
+}
+
+body[data-theme] .panel-head strong,
+body[data-theme] .run-stats b,
+body[data-theme] .view-summary b,
+body[data-theme] .view-setting b,
+body[data-theme] .setting-row b,
+body[data-theme] .score-value,
+body[data-theme] .history-dialog .score-value,
+body[data-theme] .history-summary strong,
+body[data-theme] .green {
+  color: var(--positive);
+}
+
+body[data-theme] .eyebrow,
+body[data-theme] .message-kicker {
+  color: var(--heading);
+}
+
+body[data-theme] .red {
+  color: var(--negative);
+}
+
+body[data-theme] .yellow {
+  color: var(--warning);
+}
+
+body[data-theme] .rules p:nth-of-type(1) strong,
+body[data-theme] .guide-list li:nth-child(2) b {
+  color: var(--positive);
+}
+
+body[data-theme] .rules p:nth-of-type(2) strong,
+body[data-theme] .guide-list li:nth-child(3) b {
+  color: var(--negative);
+}
+
+body[data-theme] .section-button {
+  border: 0;
+  border-left: 3px solid transparent;
+  background: transparent;
+  color: var(--text-muted);
+  transition:
+    background 0.2s,
+    color 0.2s,
+    border-color 0.2s;
+}
+
+body[data-theme] .section-button:hover {
+  background: var(--surface-bg);
+  color: var(--text-primary);
+}
+
+body[data-theme] .section-button.active {
+  border-left-color: var(--accent);
+  background: var(--surface-bg);
+  color: var(--text-primary);
+  box-shadow: inset 3px 0 12px var(--glow);
+}
+
+body[data-theme] .score-row,
+body[data-theme] .history-summary div,
+body[data-theme] .setting-button,
+body[data-theme] .control-button {
+  background: var(--surface-bg);
+}
+
+body[data-theme] .score-row {
+  border: 1px solid var(--line);
+  border-left: 2px solid transparent;
+}
+
+body[data-theme] .score-row:first-child {
+  border-left-color: var(--accent);
+}
+
+body[data-theme] .score-row:hover {
+  background: var(--surface-hover);
+}
+
+body[data-theme] .rules,
+body[data-theme] .settings-box,
+body[data-theme] .settings-view-list,
+body[data-theme] .view-setting,
+body[data-theme] .view-summary,
+body[data-theme] .guide-list,
+body[data-theme] .guide-list li {
+  border-color: var(--line);
+}
+
+body[data-theme] .setting-button,
+body[data-theme] .control-button,
+body[data-theme] .history-button,
+body[data-theme] .history-action,
+body[data-theme] .primary-button {
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--button-bg);
+  color: var(--button-text);
+  box-shadow: 0 0 0 transparent;
+  transition:
+    background 0.18s ease,
+    border-color 0.18s ease,
+    box-shadow 0.18s ease,
+    transform 0.18s ease;
+}
+
+body[data-theme] .history-button,
+body[data-theme] .history-action {
+  border-color: var(--accent);
+  background: var(--surface-bg);
+  color: var(--accent);
+}
+
+body[data-theme] .setting-button:hover,
+body[data-theme] .control-button:hover,
+body[data-theme] .history-button:hover,
+body[data-theme] .history-action:hover,
+body[data-theme] .primary-button:hover {
+  border-color: var(--accent);
+  background: var(--button-hover);
+  color: var(--button-text);
+  box-shadow: 0 0 16px var(--glow);
+  transform: translateY(-1px);
+}
+
+body[data-theme] .setting-button:active,
+body[data-theme] .control-button:active,
+body[data-theme] .history-button:active,
+body[data-theme] .history-action:active,
+body[data-theme] .primary-button:active {
+  background: var(--button-bg);
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.28);
+  transform: translateY(0);
+}
+
+body[data-theme] .setting-button.toggle {
+  color: var(--positive);
+}
+
+body[data-theme] .history-action.danger {
+  border-color: var(--negative);
+  color: var(--negative);
+}
+
+body[data-theme] .history-action.danger:hover {
+  background: var(--negative);
+  color: var(--page-bg);
+}
+
+body[data-theme] button:focus-visible {
+  outline: 2px solid var(--heading);
+  outline-offset: 3px;
+}
+
+body[data-theme] .mobile-theme-setting {
+  display: none;
+}
+
+body[data-theme] .history-dialog .score-row:hover {
+  border-color: var(--accent);
+}
+
+body[data-theme] .history-dialog .empty {
+  border-color: var(--line);
+}
+
+body[data-theme] .history-summary {
+  background: var(--line);
+  border-color: var(--line);
+}
+
+body[data-theme] dialog::backdrop {
+  background: rgba(0, 0, 0, 0.76);
+}
+
+@supports not (background: color-mix(in srgb, black, transparent)) {
+  body[data-theme] .board-message {
+    background: rgba(11, 14, 20, 0.88);
+  }
+}
+
+@media (max-width: 760px) {
+  body[data-theme] .mobile-theme-setting {
+    display: flex;
+  }
+}
+
+@media (max-width: 760px) {
+  body[data-mobile-view="home"] .mobile-back,
+  body[data-mobile-view="guide"] .mobile-back,
+  body[data-mobile-view="history"] .mobile-back,
+  body[data-mobile-view="settings"] .mobile-back {
+    display: inline-flex;
+  }
+}
+
+@media (max-width: 760px) {
+  .game-layout {
+    display: block;
+    padding: 12px 0 24px;
+  }
+
+  .mobile-menu {
+    display: none;
+    min-height: min(680px, calc(100dvh - 40px));
+    padding: clamp(24px, 8vw, 40px);
+    align-content: center;
+    gap: 34px;
+    background:
+      radial-gradient(ellipse at 100% 0, var(--glow), transparent 55%),
+      var(--panel-bg);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.3);
+  }
+
+  body[data-mobile-view="menu"] .mobile-menu {
+    display: grid;
+  }
+
+  .mobile-menu-heading h1 {
+    margin: 12px 0;
+    color: var(--heading);
+    font-size: clamp(38px, 11vw, 54px);
+    line-height: 0.98;
+    letter-spacing: -0.05em;
+  }
+
+  .mobile-menu-heading h1 em {
+    color: var(--accent);
+    font-style: normal;
+  }
+
+  .mobile-menu-heading p {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .mobile-menu-actions {
+    display: grid;
+    gap: 8px;
+  }
+
+  .mobile-menu-button {
+    display: grid;
+    grid-template-columns: 38px 1fr auto;
+    align-items: center;
+    min-height: 58px;
+    padding: 0 16px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    background: var(--surface-bg);
+    color: var(--text-primary);
+    text-align: left;
+    font: 600 16px "Space Grotesk", sans-serif;
+    transition:
+      background 0.18s ease,
+      border-color 0.18s ease,
+      box-shadow 0.18s ease,
+      transform 0.18s ease;
+  }
+
+  .mobile-menu-button span {
+    color: var(--text-muted);
+    font: 11px "DM Mono", monospace;
+  }
+
+  .mobile-menu-button strong {
+    color: var(--accent);
+    font-size: 18px;
+  }
+
+  .mobile-menu-button:hover,
+  .mobile-menu-button:focus-visible {
+    border-color: var(--accent);
+    background: var(--surface-hover);
+    box-shadow: 0 0 18px var(--glow);
+    transform: translateY(-1px);
+  }
+
+  .section-menu,
+  .game-panel,
+  .side-panel {
+    display: none;
+  }
+
+  body[data-mobile-view="home"] .game-panel,
+  body[data-mobile-view="guide"] .game-panel,
+  body[data-mobile-view="history"] .game-panel,
+  body[data-mobile-view="settings"] .game-panel {
+    display: block;
+  }
+
+  body[data-mobile-view="home"] .side-panel {
+    display: block;
+    margin-top: 16px;
+  }
+
+  .game-panel {
+    padding: 14px;
+    border-radius: 10px;
+  }
+
+  .page-view {
+    display: none;
+  }
+
+  body[data-mobile-view="home"] #homeView,
+  body[data-mobile-view="guide"] #guideView,
+  body[data-mobile-view="history"] #historyView,
+  body[data-mobile-view="settings"] #settingsView {
+    display: block;
+  }
+
+  .page-view h2 {
+    margin: 8px 0 20px;
+    font-size: clamp(28px, 8vw, 36px);
+    line-height: 1.1;
+  }
+
+  #guideView h2 {
+    margin: 8px 0 16px;
+    font: 700 clamp(38px, 11vw, 52px) Georgia, serif;
+    letter-spacing: 0;
+  }
+
+  #guideView .view-intro {
+    margin: 0;
+    color: var(--text-muted);
+    font: italic 17px/1.5 Georgia, serif;
+  }
+
+  #guideView .guide-list {
+    display: grid;
+    gap: 0;
+    margin: 24px 0 0;
+    padding: 0;
+    border-top: 1px solid var(--line);
+    list-style: none;
+  }
+
+  #guideView .guide-list li {
+    display: grid;
+    grid-template-columns: minmax(82px, 0.42fr) minmax(0, 1fr);
+    gap: 12px;
+    align-items: start;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+    color: var(--text-muted);
+    font: 15px/1.5 Georgia, serif;
+  }
+
+  #guideView .guide-list strong {
+    color: var(--text-primary);
+    font: 11px/1.6 "DM Mono", monospace;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  #guideView .guide-list b {
+    color: var(--positive);
+  }
+
+  #guideView .guide-list li:nth-child(3) b {
+    color: var(--negative);
+  }
+
+  #guideDialog {
+    width: calc(100% - 32px);
+    max-width: 440px;
+    max-height: calc(100dvh - 40px);
+    overflow: auto;
+    padding: 34px 22px 22px;
+    border-radius: 10px;
+  }
+
+  #guideDialog h2 {
+    margin: 0 0 14px;
+    font: 700 clamp(30px, 9vw, 38px) Georgia, serif;
+  }
+
+  #guideDialog p:not(.eyebrow) {
+    font-size: 15px;
+  }
+
+  #guideDialog .close {
+    top: 8px;
+    right: 12px;
+    min-width: 36px;
+    min-height: 36px;
+    color: var(--text-muted);
+  }
+
+  .settings-view-list {
+    margin-top: 20px;
+    border-top: 1px solid var(--line);
+  }
+
+  .view-setting {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-height: 64px;
+    padding: 14px 0;
+    border-bottom: 1px solid var(--line);
+    color: var(--text-muted);
+    font: 13px "DM Mono", monospace;
+  }
+
+  .view-setting > span {
+    min-width: 0;
+  }
+
+  .view-setting b {
+    margin-left: 6px;
+    color: var(--heading);
+    font-weight: 500;
+  }
+
+  .view-setting > div {
+    display: flex;
+    flex: 0 0 auto;
+    gap: 6px;
+  }
+
+  .view-setting .setting-button {
+    min-width: 64px;
+    min-height: 38px;
+    margin: 0;
+    padding: 0 10px;
+    font-size: 11px;
+  }
+
+  .view-setting > div .setting-button {
+    min-width: 42px;
+  }
+
+  .view-heading {
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .view-heading h2 {
+    margin-bottom: 0;
+  }
+
+  .view-heading > strong {
+    flex: 0 0 auto;
+    padding-top: 13px;
+    color: var(--positive);
+    font: 600 30px "Space Grotesk", sans-serif;
+  }
+
+  .view-summary {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1px;
+    margin: 18px 0;
+    border: 1px solid var(--line);
+    background: var(--line);
+    color: var(--text-muted);
+    font: 10px "DM Mono", monospace;
+  }
+
+  .view-summary span {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px;
+    min-width: 0;
+    padding: 12px 10px;
+    background: var(--surface-bg);
+  }
+
+  .view-summary b {
+    color: var(--text-primary);
+  }
+
+  #middleHistoryList .score-row {
+    grid-template-columns: 24px minmax(0, 1fr) auto;
+    gap: 8px;
+    padding: 12px 10px;
+  }
+
+  #middleHistoryList .score-name,
+  #middleHistoryList .score-value {
+    min-width: 0;
+  }
+
+  #middleHistoryList .score-name strong,
+  #middleHistoryList .score-name small,
+  #middleHistoryList .score-value small {
+    overflow-wrap: anywhere;
+  }
+
+  #middleHistoryList .score-value {
+    font-size: 13px;
+  }
+
+  #middleHistoryList .score-value small {
+    max-width: 116px;
+    font-size: 9px;
+  }
+
+  .mobile-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    min-height: 42px;
+    margin: 0 0 18px;
+    padding: 0 12px;
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    background: var(--surface-bg);
+    color: var(--text-muted);
+    font: 11px "DM Mono", monospace;
+    letter-spacing: 0.04em;
+  }
+
+  .mobile-back:hover {
+    border-color: var(--accent);
+    color: var(--text-primary);
+  }
+
+  .mobile-back span {
+    color: var(--accent);
+    font-size: 16px;
+  }
+}
+
+.mobile-menu,
+.mobile-back {
+  display: none;
+}
+
+.theme-button,
+.active-nav {
+  box-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
+  transition: all 0.2s ease-in-out;
+}
+
+.theme-button:hover {
+  box-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
+  transform: translateY(-1px);
+}
+
+.run-settings {
+  background: rgba(22, 27, 34, 0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }

@@ -8,11 +8,11 @@
       name="viewport"
       content="width=device-width, initial-scale=1, viewport-fit=cover"
     />
-    <meta name="theme-color" content="#08111f" />
+    <meta name="theme-color" content="#0b0e14" />
     <title>Neon Coil | Snake</title>
     <link rel="stylesheet" href="/style.css" />
   </head>
-  <body>
+  <body data-mobile-view="menu">
     <main class="shell">
       <!-- <header class="topbar">
         <div class="brand">
@@ -52,6 +52,27 @@
         </div>
       </section> -->
       <section class="game-layout">
+        <section class="mobile-menu" aria-label="Game menu">
+          <div class="mobile-menu-heading">
+            <span class="label">NEON COIL // ARCADE</span>
+            <h1>Choose your<br /><em>next move.</em></h1>
+            <p>Play a run, learn the rules, or make it yours.</p>
+          </div>
+          <nav class="mobile-menu-actions" aria-label="Game actions">
+            <button class="mobile-menu-button" data-mobile-view="home">
+              <span>01</span> Play <strong>↗</strong>
+            </button>
+            <button class="mobile-menu-button" data-mobile-view="guide">
+              <span>02</span> Guide <strong>↗</strong>
+            </button>
+            <button class="mobile-menu-button" data-mobile-view="history">
+              <span>03</span> History <strong>↗</strong>
+            </button>
+            <button class="mobile-menu-button" data-mobile-view="settings">
+              <span>04</span> Settings <strong>↗</strong>
+            </button>
+          </nav>
+        </section>
         <nav class="section-menu" aria-label="Main sections">
           <span class="label">NAVIGATE</span>
           <button class="section-button active" data-view="home">PLAY</button>
@@ -62,6 +83,9 @@
           <button class="section-button" data-view="settings">SETTINGS</button>
         </nav>
         <div class="game-panel">
+          <button class="mobile-back" type="button" data-mobile-back>
+            <span aria-hidden="true">←</span> Back to menu
+          </button>
           <section class="page-view active" id="homeView">
             <div class="panel-head">
               <div>
@@ -190,6 +214,12 @@
           </div>
           <div class="settings-box">
             <span class="label">RUN SETTINGS</span>
+            <div class="setting-row mobile-theme-setting">
+              <span>Theme <b id="mobileThemeValue">CYBERPUNK</b></span>
+              <button class="setting-button" id="mobileThemeButton">
+                CHANGE
+              </button>
+            </div>
             <div class="setting-row">
               <span>Speed <b id="speedValue">3</b></span>
               <div>

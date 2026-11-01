@@ -9,41 +9,50 @@ const backgroundMusic = document.querySelector("#backgroundMusic");
 const message = document.querySelector("#boardMessage");
 const themeButton = document.querySelector("#themeButton");
 const middleThemeValue = document.querySelector("#middleThemeValue");
+const mobileThemeButton = document.querySelector("#mobileThemeButton");
+const mobileThemeValue = document.querySelector("#mobileThemeValue");
 const middleMusicValue = document.querySelector("#middleMusicValue");
 const grid = 25;
-const themes = ["garden", "midnight", "sunset"];
-let activeTheme = localStorage.getItem("neon-coil-theme") || "garden";
-if (!themes.includes(activeTheme)) activeTheme = "garden";
+const themes = ["cyberpunk", "forest", "retro"];
+const savedTheme = localStorage.getItem("neon-coil-theme");
+const legacyThemes = {
+  garden: "forest",
+  midnight: "forest",
+  sunset: "retro",
+};
+let activeTheme = themes.includes(savedTheme)
+  ? savedTheme
+  : legacyThemes[savedTheme] || "cyberpunk";
 const boardPalettes = {
-  garden: {
-    background: "#efe2c6",
-    grid: "rgba(38, 59, 43, 0.1)",
-    food: "#6d9b4a",
-    poison: "#c95f45",
-    obstacle: "#d19b45",
-    snake: "#4d8056",
-    head: "#fff8e9",
-    ink: "#263b2b",
+  cyberpunk: {
+    background: "#0B0E14",
+    grid: "rgba(93, 235, 255, 0.09)",
+    food: "#61F2A5",
+    poison: "#FF5F79",
+    obstacle: "#FFCA70",
+    snake: "#A78BFA",
+    head: "#E6EDF3",
+    ink: "#0B0E14",
   },
-  midnight: {
-    background: "#27343a",
-    grid: "rgba(232, 224, 207, 0.12)",
-    food: "#b6c86a",
-    poison: "#e07a5f",
-    obstacle: "#e2b35f",
-    snake: "#83b692",
-    head: "#e8e0cf",
-    ink: "#172126",
+  forest: {
+    background: "#101923",
+    grid: "rgba(179, 174, 199, 0.1)",
+    food: "#8BD17C",
+    poison: "#F07D79",
+    obstacle: "#E8B96A",
+    snake: "#50B9A7",
+    head: "#E6F0EC",
+    ink: "#132126",
   },
-  sunset: {
-    background: "#f0d5b4",
-    grid: "rgba(75, 41, 37, 0.1)",
-    food: "#6d8b45",
-    poison: "#b94e3c",
-    obstacle: "#d68b3e",
-    snake: "#8a5a44",
-    head: "#fff4df",
-    ink: "#4b2925",
+  retro: {
+    background: "#100F2B",
+    grid: "rgba(185, 180, 255, 0.12)",
+    food: "#75FF70",
+    poison: "#FF647C",
+    obstacle: "#FFC15C",
+    snake: "#F4A261",
+    head: "#FFF1D2",
+    ink: "#211734",
   },
 };
 let snake,
@@ -177,10 +186,15 @@ function updateSettings() {
     : "OFF";
 }
 function applyTheme() {
-  document.documentElement.dataset.theme = activeTheme;
+  document.body.dataset.theme = activeTheme;
+  document
+    .querySelector('meta[name="theme-color"]')
+    .setAttribute("content", boardPalettes[activeTheme].background);
   if (themeButton) themeButton.textContent = activeTheme.toUpperCase();
   if (middleThemeValue)
     middleThemeValue.textContent = activeTheme.toUpperCase();
+  if (mobileThemeValue)
+    mobileThemeValue.textContent = activeTheme.toUpperCase();
   localStorage.setItem("neon-coil-theme", activeTheme);
   if (snake) draw();
 }
@@ -196,6 +210,10 @@ function showView(viewName) {
     view.classList.toggle("active", view.id === `${viewName}View`);
   });
   if (viewName === "history") loadScores();
+}
+function showMobileView(viewName) {
+  document.body.dataset.mobileView = viewName;
+  showView(viewName);
 }
 function draw() {
   const palette = boardPalettes[activeTheme];
@@ -450,6 +468,8 @@ document
   .addEventListener("click", downloadHistory);
 document.querySelector("#clearHistory").addEventListener("click", clearHistory);
 if (themeButton) themeButton.addEventListener("click", changeTheme);
+if (mobileThemeButton)
+  mobileThemeButton.addEventListener("click", changeTheme);
 document
   .querySelector("#middleThemeButton")
   .addEventListener("click", changeTheme);
@@ -460,6 +480,21 @@ document.querySelector("#middleMusicButton").addEventListener("click", () => {
 document.querySelectorAll(".section-button").forEach((button) => {
   button.addEventListener("click", () => showView(button.dataset.view));
 });
+document.querySelectorAll("[data-mobile-view]").forEach((button) => {
+  button.addEventListener("click", () => {
+    const viewName = button.dataset.mobileView;
+    showMobileView(viewName);
+    if (viewName === "guide") {
+      document.querySelector("#guideDialog").showModal();
+    }
+  });
+});
+document
+  .querySelector("[data-mobile-back]")
+  .addEventListener("click", () => {
+    showMobileView("menu");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
 document.querySelector("#middleSpeedDown").addEventListener("click", () => {
   speedLevel = Math.max(1, speedLevel - 1);
   updateSettings();
