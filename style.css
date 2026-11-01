@@ -835,6 +835,10 @@ dialog p:not(.eyebrow) {
     align-items: start;
   }
 
+  .game-layout > .game-panel {
+    display: block;
+  }
+
   .section-menu {
     display: grid;
     align-content: start;
@@ -871,7 +875,7 @@ dialog p:not(.eyebrow) {
     display: none;
   }
 
-  .page-view.active {
+  .game-layout > .game-panel > .page-view.active {
     display: block;
   }
 

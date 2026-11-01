@@ -149,6 +149,8 @@ class SnakeServerTests(unittest.TestCase):
         css = (app.ROOT / "style.css").read_text(encoding="utf-8")
         self.assertIn("grid-template-columns: minmax(135px, 1fr) minmax(0, 2fr) minmax(235px, 1fr)", css)
         self.assertIn("@media (min-width: 761px)", css)
+        self.assertIn(".game-layout > .game-panel", css)
+        self.assertIn(".game-layout > .game-panel > .page-view.active", css)
         self.assertIn(".section-menu,", css)
         self.assertIn(".page-view:not(#homeView)", css)
 

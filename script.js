@@ -203,6 +203,7 @@ function changeTheme() {
   applyTheme();
 }
 function showView(viewName) {
+  document.body.dataset.mobileView = viewName;
   document.querySelectorAll(".section-button").forEach((button) => {
     button.classList.toggle("active", button.dataset.view === viewName);
   });
